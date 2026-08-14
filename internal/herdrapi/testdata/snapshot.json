@@ -1,0 +1,1233 @@
+{
+  "agents": [
+    {
+      "agent": "codex",
+      "agent_session": {
+        "agent": "codex",
+        "kind": "id",
+        "source": "herdr:codex",
+        "value": "fixture-session-01"
+      },
+      "agent_status": "working",
+      "cwd": "/Users/user/.config/nvim",
+      "focused": false,
+      "foreground_cwd": "/Users/user/.config/nvim",
+      "pane_id": "w5:p6",
+      "revision": 12,
+      "state_change_seq": 100,
+      "tab_id": "w5:t5",
+      "terminal_id": "term_000000000001",
+      "terminal_title": "⠼ nvim",
+      "terminal_title_stripped": "nvim",
+      "workspace_id": "w5"
+    },
+    {
+      "agent": "claude",
+      "agent_session": {
+        "agent": "claude",
+        "kind": "id",
+        "source": "herdr:claude",
+        "value": "fixture-session-02"
+      },
+      "agent_status": "idle",
+      "cwd": "/Users/user/.config/nvim",
+      "focused": false,
+      "foreground_cwd": "/Users/user/.config/nvim",
+      "pane_id": "w5:pB",
+      "revision": 113,
+      "state_change_seq": 87,
+      "tab_id": "w5:t5",
+      "terminal_id": "term_000000000002",
+      "terminal_title": "✳ Review the API spec",
+      "terminal_title_stripped": "Review the API spec",
+      "workspace_id": "w5"
+    },
+    {
+      "agent": "codex",
+      "agent_session": {
+        "agent": "codex",
+        "kind": "id",
+        "source": "herdr:codex",
+        "value": "fixture-session-03"
+      },
+      "agent_status": "idle",
+      "cwd": "/Users/user/.config/nvim",
+      "focused": false,
+      "foreground_cwd": "/Users/user/.config/nvim",
+      "pane_id": "w5:pD",
+      "revision": 4,
+      "state_change_seq": 97,
+      "tab_id": "w5:t5",
+      "terminal_id": "term_000000000003",
+      "terminal_title": "nvim",
+      "terminal_title_stripped": "nvim",
+      "workspace_id": "w5"
+    },
+    {
+      "agent": "codex",
+      "agent_session": {
+        "agent": "codex",
+        "kind": "id",
+        "source": "herdr:codex",
+        "value": "fixture-session-04"
+      },
+      "agent_status": "working",
+      "cwd": "/Users/user/.config/herdr",
+      "focused": false,
+      "foreground_cwd": "/Users/user/.config/herdr",
+      "pane_id": "w5:p3",
+      "revision": 13,
+      "state_change_seq": 105,
+      "tab_id": "w5:t3",
+      "terminal_id": "term_000000000004",
+      "terminal_title": "⠋ herdr",
+      "terminal_title_stripped": "herdr",
+      "workspace_id": "w5"
+    },
+    {
+      "agent": "codex",
+      "agent_session": {
+        "agent": "codex",
+        "kind": "id",
+        "source": "herdr:codex",
+        "value": "fixture-session-05"
+      },
+      "agent_status": "working",
+      "cwd": "/Users/user/.config/herdr",
+      "focused": false,
+      "foreground_cwd": "/Users/user/.config/herdr",
+      "pane_id": "w5:pF",
+      "revision": 17,
+      "state_change_seq": 109,
+      "tab_id": "w5:t3",
+      "terminal_id": "term_000000000005",
+      "terminal_title": "⠦ herdr",
+      "terminal_title_stripped": "herdr",
+      "workspace_id": "w5"
+    },
+    {
+      "agent": "claude",
+      "agent_session": {
+        "agent": "claude",
+        "kind": "id",
+        "source": "herdr:claude",
+        "value": "fixture-session-06"
+      },
+      "agent_status": "idle",
+      "cwd": "/Users/user/projects/editor-plugin",
+      "focused": false,
+      "foreground_cwd": "/Users/user/projects/editor-plugin",
+      "pane_id": "w5:pA",
+      "revision": 53,
+      "state_change_seq": 54,
+      "tab_id": "w5:t7",
+      "terminal_id": "term_000000000006",
+      "terminal_title": "✳ Review the retry policy",
+      "terminal_title_stripped": "Review the retry policy",
+      "workspace_id": "w5"
+    },
+    {
+      "agent": "codex",
+      "agent_session": {
+        "agent": "codex",
+        "kind": "id",
+        "source": "herdr:codex",
+        "value": "fixture-session-07"
+      },
+      "agent_status": "idle",
+      "cwd": "/Users/user/projects/backend",
+      "focused": false,
+      "foreground_cwd": "/Users/user/projects/backend",
+      "pane_id": "w3:pH",
+      "revision": 5,
+      "state_change_seq": 96,
+      "tab_id": "w3:t1",
+      "terminal_id": "term_000000000007",
+      "terminal_title": "backend",
+      "terminal_title_stripped": "backend",
+      "workspace_id": "w3"
+    },
+    {
+      "agent": "claude",
+      "agent_session": {
+        "agent": "claude",
+        "kind": "id",
+        "source": "herdr:claude",
+        "value": "fixture-session-08"
+      },
+      "agent_status": "idle",
+      "cwd": "/Users/user/projects/backend",
+      "focused": false,
+      "foreground_cwd": "/Users/user/projects/backend",
+      "pane_id": "w3:p9",
+      "revision": 49,
+      "state_change_seq": 72,
+      "tab_id": "w3:t1",
+      "terminal_id": "term_000000000008",
+      "terminal_title": "✳ Add a health check endpoint",
+      "terminal_title_stripped": "Add a health check endpoint",
+      "workspace_id": "w3"
+    },
+    {
+      "agent": "claude",
+      "agent_session": {
+        "agent": "claude",
+        "kind": "id",
+        "source": "herdr:claude",
+        "value": "fixture-session-09"
+      },
+      "agent_status": "idle",
+      "cwd": "/Users/user/projects/backend",
+      "focused": false,
+      "foreground_cwd": "/Users/user/projects/backend",
+      "pane_id": "w3:pG",
+      "revision": 76,
+      "state_change_seq": 77,
+      "tab_id": "w3:t1",
+      "terminal_id": "term_000000000009",
+      "terminal_title": "✳ Claude Code",
+      "terminal_title_stripped": "Claude Code",
+      "workspace_id": "w3"
+    }
+  ],
+  "focused_pane_id": "w5:pJ",
+  "focused_tab_id": "w5:t8",
+  "focused_workspace_id": "w5",
+  "layouts": [
+    {
+      "area": {
+        "height": 63,
+        "width": 180,
+        "x": 33,
+        "y": 1
+      },
+      "focused_pane_id": "w5:p6",
+      "panes": [
+        {
+          "focused": true,
+          "pane_id": "w5:p6",
+          "rect": {
+            "height": 63,
+            "width": 90,
+            "x": 33,
+            "y": 1
+          }
+        },
+        {
+          "focused": false,
+          "pane_id": "w5:pB",
+          "rect": {
+            "height": 32,
+            "width": 90,
+            "x": 123,
+            "y": 1
+          }
+        },
+        {
+          "focused": false,
+          "pane_id": "w5:pD",
+          "rect": {
+            "height": 31,
+            "width": 90,
+            "x": 123,
+            "y": 33
+          }
+        }
+      ],
+      "splits": [
+        {
+          "direction": "right",
+          "id": "split_0_root",
+          "ratio": 0.5,
+          "rect": {
+            "height": 63,
+            "width": 180,
+            "x": 33,
+            "y": 1
+          }
+        },
+        {
+          "direction": "down",
+          "id": "split_1_1",
+          "ratio": 0.5,
+          "rect": {
+            "height": 63,
+            "width": 90,
+            "x": 123,
+            "y": 1
+          }
+        }
+      ],
+      "tab_id": "w5:t5",
+      "workspace_id": "w5",
+      "zoomed": false
+    },
+    {
+      "area": {
+        "height": 63,
+        "width": 180,
+        "x": 33,
+        "y": 1
+      },
+      "focused_pane_id": "w5:pF",
+      "panes": [
+        {
+          "focused": false,
+          "pane_id": "w5:p3",
+          "rect": {
+            "height": 32,
+            "width": 78,
+            "x": 33,
+            "y": 1
+          }
+        },
+        {
+          "focused": false,
+          "pane_id": "w5:pG",
+          "rect": {
+            "height": 31,
+            "width": 78,
+            "x": 33,
+            "y": 33
+          }
+        },
+        {
+          "focused": true,
+          "pane_id": "w5:pF",
+          "rect": {
+            "height": 63,
+            "width": 102,
+            "x": 111,
+            "y": 1
+          }
+        }
+      ],
+      "splits": [
+        {
+          "direction": "right",
+          "id": "split_0_root",
+          "ratio": 0.43333334,
+          "rect": {
+            "height": 63,
+            "width": 180,
+            "x": 33,
+            "y": 1
+          }
+        },
+        {
+          "direction": "down",
+          "id": "split_1_0",
+          "ratio": 0.50793654,
+          "rect": {
+            "height": 63,
+            "width": 78,
+            "x": 33,
+            "y": 1
+          }
+        }
+      ],
+      "tab_id": "w5:t3",
+      "workspace_id": "w5",
+      "zoomed": false
+    },
+    {
+      "area": {
+        "height": 63,
+        "width": 180,
+        "x": 33,
+        "y": 1
+      },
+      "focused_pane_id": "w5:p4",
+      "panes": [
+        {
+          "focused": true,
+          "pane_id": "w5:p4",
+          "rect": {
+            "height": 63,
+            "width": 180,
+            "x": 33,
+            "y": 1
+          }
+        }
+      ],
+      "splits": [],
+      "tab_id": "w5:t4",
+      "workspace_id": "w5",
+      "zoomed": false
+    },
+    {
+      "area": {
+        "height": 63,
+        "width": 180,
+        "x": 33,
+        "y": 1
+      },
+      "focused_pane_id": "w5:pH",
+      "panes": [
+        {
+          "focused": false,
+          "pane_id": "w5:pA",
+          "rect": {
+            "height": 32,
+            "width": 180,
+            "x": 33,
+            "y": 1
+          }
+        },
+        {
+          "focused": true,
+          "pane_id": "w5:pH",
+          "rect": {
+            "height": 31,
+            "width": 180,
+            "x": 33,
+            "y": 33
+          }
+        }
+      ],
+      "splits": [
+        {
+          "direction": "down",
+          "id": "split_0_root",
+          "ratio": 0.5,
+          "rect": {
+            "height": 63,
+            "width": 180,
+            "x": 33,
+            "y": 1
+          }
+        }
+      ],
+      "tab_id": "w5:t7",
+      "workspace_id": "w5",
+      "zoomed": false
+    },
+    {
+      "area": {
+        "height": 63,
+        "width": 180,
+        "x": 33,
+        "y": 1
+      },
+      "focused_pane_id": "w5:pJ",
+      "panes": [
+        {
+          "focused": true,
+          "pane_id": "w5:pJ",
+          "rect": {
+            "height": 63,
+            "width": 180,
+            "x": 33,
+            "y": 1
+          }
+        }
+      ],
+      "splits": [],
+      "tab_id": "w5:t8",
+      "workspace_id": "w5",
+      "zoomed": false
+    },
+    {
+      "area": {
+        "height": 63,
+        "width": 180,
+        "x": 33,
+        "y": 1
+      },
+      "focused_pane_id": "w3:pA",
+      "panes": [
+        {
+          "focused": true,
+          "pane_id": "w3:pA",
+          "rect": {
+            "height": 63,
+            "width": 180,
+            "x": 33,
+            "y": 1
+          }
+        }
+      ],
+      "splits": [],
+      "tab_id": "w3:t6",
+      "workspace_id": "w3",
+      "zoomed": false
+    },
+    {
+      "area": {
+        "height": 63,
+        "width": 180,
+        "x": 33,
+        "y": 1
+      },
+      "focused_pane_id": "w3:pH",
+      "panes": [
+        {
+          "focused": false,
+          "pane_id": "w3:p1",
+          "rect": {
+            "height": 29,
+            "width": 105,
+            "x": 33,
+            "y": 1
+          }
+        },
+        {
+          "focused": true,
+          "pane_id": "w3:pH",
+          "rect": {
+            "height": 34,
+            "width": 105,
+            "x": 33,
+            "y": 30
+          }
+        },
+        {
+          "focused": false,
+          "pane_id": "w3:p9",
+          "rect": {
+            "height": 29,
+            "width": 75,
+            "x": 138,
+            "y": 1
+          }
+        },
+        {
+          "focused": false,
+          "pane_id": "w3:pG",
+          "rect": {
+            "height": 34,
+            "width": 75,
+            "x": 138,
+            "y": 30
+          }
+        }
+      ],
+      "splits": [
+        {
+          "direction": "right",
+          "id": "split_0_root",
+          "ratio": 0.5833333,
+          "rect": {
+            "height": 63,
+            "width": 180,
+            "x": 33,
+            "y": 1
+          }
+        },
+        {
+          "direction": "down",
+          "id": "split_1_0",
+          "ratio": 0.46031746,
+          "rect": {
+            "height": 63,
+            "width": 105,
+            "x": 33,
+            "y": 1
+          }
+        },
+        {
+          "direction": "down",
+          "id": "split_2_1",
+          "ratio": 0.46031746,
+          "rect": {
+            "height": 63,
+            "width": 75,
+            "x": 138,
+            "y": 1
+          }
+        }
+      ],
+      "tab_id": "w3:t1",
+      "workspace_id": "w3",
+      "zoomed": false
+    },
+    {
+      "area": {
+        "height": 63,
+        "width": 180,
+        "x": 33,
+        "y": 1
+      },
+      "focused_pane_id": "w3:p4",
+      "panes": [
+        {
+          "focused": true,
+          "pane_id": "w3:p4",
+          "rect": {
+            "height": 63,
+            "width": 180,
+            "x": 33,
+            "y": 1
+          }
+        }
+      ],
+      "splits": [],
+      "tab_id": "w3:t3",
+      "workspace_id": "w3",
+      "zoomed": false
+    },
+    {
+      "area": {
+        "height": 63,
+        "width": 180,
+        "x": 33,
+        "y": 1
+      },
+      "focused_pane_id": "w3:pB",
+      "panes": [
+        {
+          "focused": true,
+          "pane_id": "w3:pB",
+          "rect": {
+            "height": 63,
+            "width": 180,
+            "x": 33,
+            "y": 1
+          }
+        }
+      ],
+      "splits": [],
+      "tab_id": "w3:t7",
+      "workspace_id": "w3",
+      "zoomed": false
+    },
+    {
+      "area": {
+        "height": 63,
+        "width": 180,
+        "x": 33,
+        "y": 1
+      },
+      "focused_pane_id": "w3:pC",
+      "panes": [
+        {
+          "focused": true,
+          "pane_id": "w3:pC",
+          "rect": {
+            "height": 63,
+            "width": 180,
+            "x": 33,
+            "y": 1
+          }
+        }
+      ],
+      "splits": [],
+      "tab_id": "w3:t8",
+      "workspace_id": "w3",
+      "zoomed": false
+    },
+    {
+      "area": {
+        "height": 63,
+        "width": 180,
+        "x": 33,
+        "y": 1
+      },
+      "focused_pane_id": "w3:pD",
+      "panes": [
+        {
+          "focused": true,
+          "pane_id": "w3:pD",
+          "rect": {
+            "height": 63,
+            "width": 180,
+            "x": 33,
+            "y": 1
+          }
+        }
+      ],
+      "splits": [],
+      "tab_id": "w3:t9",
+      "workspace_id": "w3",
+      "zoomed": false
+    },
+    {
+      "area": {
+        "height": 63,
+        "width": 180,
+        "x": 33,
+        "y": 1
+      },
+      "focused_pane_id": "w3:pE",
+      "panes": [
+        {
+          "focused": true,
+          "pane_id": "w3:pE",
+          "rect": {
+            "height": 63,
+            "width": 180,
+            "x": 33,
+            "y": 1
+          }
+        }
+      ],
+      "splits": [],
+      "tab_id": "w3:tA",
+      "workspace_id": "w3",
+      "zoomed": false
+    }
+  ],
+  "panes": [
+    {
+      "agent": "codex",
+      "agent_session": {
+        "agent": "codex",
+        "kind": "id",
+        "source": "herdr:codex",
+        "value": "fixture-session-01"
+      },
+      "agent_status": "working",
+      "cwd": "/Users/user/.config/nvim",
+      "focused": false,
+      "foreground_cwd": "/Users/user/.config/nvim",
+      "pane_id": "w5:p6",
+      "revision": 12,
+      "scroll": {
+        "max_offset_from_bottom": 2891,
+        "offset_from_bottom": 0,
+        "viewport_rows": 61
+      },
+      "tab_id": "w5:t5",
+      "terminal_id": "term_000000000001",
+      "terminal_title": "⠼ nvim",
+      "terminal_title_stripped": "nvim",
+      "workspace_id": "w5"
+    },
+    {
+      "agent": "claude",
+      "agent_session": {
+        "agent": "claude",
+        "kind": "id",
+        "source": "herdr:claude",
+        "value": "fixture-session-02"
+      },
+      "agent_status": "idle",
+      "cwd": "/Users/user/.config/nvim",
+      "focused": false,
+      "foreground_cwd": "/Users/user/.config/nvim",
+      "pane_id": "w5:pB",
+      "revision": 113,
+      "scroll": {
+        "max_offset_from_bottom": 0,
+        "offset_from_bottom": 0,
+        "viewport_rows": 31
+      },
+      "tab_id": "w5:t5",
+      "terminal_id": "term_000000000002",
+      "terminal_title": "✳ Review the API spec",
+      "terminal_title_stripped": "Review the API spec",
+      "workspace_id": "w5"
+    },
+    {
+      "agent": "codex",
+      "agent_session": {
+        "agent": "codex",
+        "kind": "id",
+        "source": "herdr:codex",
+        "value": "fixture-session-03"
+      },
+      "agent_status": "idle",
+      "cwd": "/Users/user/.config/nvim",
+      "focused": false,
+      "foreground_cwd": "/Users/user/.config/nvim",
+      "pane_id": "w5:pD",
+      "revision": 4,
+      "scroll": {
+        "max_offset_from_bottom": 450,
+        "offset_from_bottom": 0,
+        "viewport_rows": 29
+      },
+      "tab_id": "w5:t5",
+      "terminal_id": "term_000000000003",
+      "terminal_title": "nvim",
+      "terminal_title_stripped": "nvim",
+      "workspace_id": "w5"
+    },
+    {
+      "agent": "codex",
+      "agent_session": {
+        "agent": "codex",
+        "kind": "id",
+        "source": "herdr:codex",
+        "value": "fixture-session-04"
+      },
+      "agent_status": "working",
+      "cwd": "/Users/user/.config/herdr",
+      "focused": false,
+      "foreground_cwd": "/Users/user/.config/herdr",
+      "pane_id": "w5:p3",
+      "revision": 13,
+      "scroll": {
+        "max_offset_from_bottom": 1482,
+        "offset_from_bottom": 0,
+        "viewport_rows": 31
+      },
+      "tab_id": "w5:t3",
+      "terminal_id": "term_000000000004",
+      "terminal_title": "⠋ herdr",
+      "terminal_title_stripped": "herdr",
+      "workspace_id": "w5"
+    },
+    {
+      "agent_status": "unknown",
+      "cwd": "/Users/user/.config/herdr",
+      "focused": false,
+      "foreground_cwd": "/Users/user/.config/herdr",
+      "pane_id": "w5:pG",
+      "revision": 3,
+      "scroll": {
+        "max_offset_from_bottom": 0,
+        "offset_from_bottom": 0,
+        "viewport_rows": 29
+      },
+      "tab_id": "w5:t3",
+      "terminal_id": "term_000000000010",
+      "terminal_title": "herdr: nvim",
+      "terminal_title_stripped": "herdr: nvim",
+      "workspace_id": "w5"
+    },
+    {
+      "agent": "codex",
+      "agent_session": {
+        "agent": "codex",
+        "kind": "id",
+        "source": "herdr:codex",
+        "value": "fixture-session-05"
+      },
+      "agent_status": "working",
+      "cwd": "/Users/user/.config/herdr",
+      "focused": false,
+      "foreground_cwd": "/Users/user/.config/herdr",
+      "pane_id": "w5:pF",
+      "revision": 17,
+      "scroll": {
+        "max_offset_from_bottom": 72,
+        "offset_from_bottom": 0,
+        "viewport_rows": 61
+      },
+      "tab_id": "w5:t3",
+      "terminal_id": "term_000000000005",
+      "terminal_title": "⠦ herdr",
+      "terminal_title_stripped": "herdr",
+      "workspace_id": "w5"
+    },
+    {
+      "agent_status": "unknown",
+      "cwd": "/Users/user/.config/tmux",
+      "focused": false,
+      "foreground_cwd": "/Users/user/.config/tmux",
+      "pane_id": "w5:p4",
+      "revision": 5,
+      "scroll": {
+        "max_offset_from_bottom": 0,
+        "offset_from_bottom": 0,
+        "viewport_rows": 63
+      },
+      "tab_id": "w5:t4",
+      "terminal_id": "term_000000000011",
+      "terminal_title": "~/.config/tmux",
+      "terminal_title_stripped": "~/.config/tmux",
+      "workspace_id": "w5"
+    },
+    {
+      "agent": "claude",
+      "agent_session": {
+        "agent": "claude",
+        "kind": "id",
+        "source": "herdr:claude",
+        "value": "fixture-session-06"
+      },
+      "agent_status": "idle",
+      "cwd": "/Users/user/projects/editor-plugin",
+      "focused": false,
+      "foreground_cwd": "/Users/user/projects/editor-plugin",
+      "pane_id": "w5:pA",
+      "revision": 53,
+      "scroll": {
+        "max_offset_from_bottom": 0,
+        "offset_from_bottom": 0,
+        "viewport_rows": 31
+      },
+      "tab_id": "w5:t7",
+      "terminal_id": "term_000000000006",
+      "terminal_title": "✳ Review the retry policy",
+      "terminal_title_stripped": "Review the retry policy",
+      "workspace_id": "w5"
+    },
+    {
+      "agent_status": "unknown",
+      "cwd": "/Users/user/projects/editor-plugin",
+      "focused": false,
+      "foreground_cwd": "/Users/user/projects/editor-plugin",
+      "pane_id": "w5:pH",
+      "revision": 4,
+      "scroll": {
+        "max_offset_from_bottom": 0,
+        "offset_from_bottom": 0,
+        "viewport_rows": 29
+      },
+      "tab_id": "w5:t7",
+      "terminal_id": "term_000000000012",
+      "terminal_title": "~/projects/editor-plugin",
+      "terminal_title_stripped": "~/projects/editor-plugin",
+      "workspace_id": "w5"
+    },
+    {
+      "agent_status": "unknown",
+      "cwd": "/Users/user/.config/herdr",
+      "focused": true,
+      "foreground_cwd": "/Users/user/.config/herdr",
+      "pane_id": "w5:pJ",
+      "revision": 0,
+      "scroll": {
+        "max_offset_from_bottom": 0,
+        "offset_from_bottom": 0,
+        "viewport_rows": 63
+      },
+      "tab_id": "w5:t8",
+      "terminal_id": "term_000000000013",
+      "workspace_id": "w5"
+    },
+    {
+      "agent_status": "unknown",
+      "cwd": "/Users/user/notes",
+      "focused": false,
+      "foreground_cwd": "/Users/user/notes",
+      "pane_id": "w3:pA",
+      "revision": 11,
+      "scroll": {
+        "max_offset_from_bottom": 0,
+        "offset_from_bottom": 0,
+        "viewport_rows": 63
+      },
+      "tab_id": "w3:t6",
+      "terminal_id": "term_000000000014",
+      "terminal_title": "notes: nvim",
+      "terminal_title_stripped": "notes: nvim",
+      "workspace_id": "w3"
+    },
+    {
+      "agent_session": {
+        "agent": "claude",
+        "kind": "id",
+        "source": "herdr:claude",
+        "value": "fixture-session-10"
+      },
+      "agent_status": "unknown",
+      "cwd": "/Users/user/projects/backend",
+      "focused": false,
+      "foreground_cwd": "/Users/user/projects/backend",
+      "pane_id": "w3:p1",
+      "revision": 8,
+      "scroll": {
+        "max_offset_from_bottom": 0,
+        "offset_from_bottom": 0,
+        "viewport_rows": 28
+      },
+      "tab_id": "w3:t1",
+      "terminal_id": "term_000000000015",
+      "terminal_title": "backend: nvim",
+      "terminal_title_stripped": "backend: nvim",
+      "workspace_id": "w3"
+    },
+    {
+      "agent": "codex",
+      "agent_session": {
+        "agent": "codex",
+        "kind": "id",
+        "source": "herdr:codex",
+        "value": "fixture-session-07"
+      },
+      "agent_status": "idle",
+      "cwd": "/Users/user/projects/backend",
+      "focused": false,
+      "foreground_cwd": "/Users/user/projects/backend",
+      "pane_id": "w3:pH",
+      "revision": 5,
+      "scroll": {
+        "max_offset_from_bottom": 704,
+        "offset_from_bottom": 0,
+        "viewport_rows": 32
+      },
+      "tab_id": "w3:t1",
+      "terminal_id": "term_000000000007",
+      "terminal_title": "backend",
+      "terminal_title_stripped": "backend",
+      "workspace_id": "w3"
+    },
+    {
+      "agent": "claude",
+      "agent_session": {
+        "agent": "claude",
+        "kind": "id",
+        "source": "herdr:claude",
+        "value": "fixture-session-08"
+      },
+      "agent_status": "idle",
+      "cwd": "/Users/user/projects/backend",
+      "focused": false,
+      "foreground_cwd": "/Users/user/projects/backend",
+      "pane_id": "w3:p9",
+      "revision": 49,
+      "scroll": {
+        "max_offset_from_bottom": 0,
+        "offset_from_bottom": 0,
+        "viewport_rows": 28
+      },
+      "tab_id": "w3:t1",
+      "terminal_id": "term_000000000008",
+      "terminal_title": "✳ Add a health check endpoint",
+      "terminal_title_stripped": "Add a health check endpoint",
+      "workspace_id": "w3"
+    },
+    {
+      "agent": "claude",
+      "agent_session": {
+        "agent": "claude",
+        "kind": "id",
+        "source": "herdr:claude",
+        "value": "fixture-session-09"
+      },
+      "agent_status": "idle",
+      "cwd": "/Users/user/projects/backend",
+      "focused": false,
+      "foreground_cwd": "/Users/user/projects/backend",
+      "pane_id": "w3:pG",
+      "revision": 76,
+      "scroll": {
+        "max_offset_from_bottom": 0,
+        "offset_from_bottom": 0,
+        "viewport_rows": 32
+      },
+      "tab_id": "w3:t1",
+      "terminal_id": "term_000000000009",
+      "terminal_title": "✳ Claude Code",
+      "terminal_title_stripped": "Claude Code",
+      "workspace_id": "w3"
+    },
+    {
+      "agent_status": "unknown",
+      "cwd": "/Users/user/projects/api",
+      "focused": false,
+      "foreground_cwd": "/Users/user/projects/api",
+      "pane_id": "w3:p4",
+      "revision": 20,
+      "scroll": {
+        "max_offset_from_bottom": 0,
+        "offset_from_bottom": 0,
+        "viewport_rows": 63
+      },
+      "tab_id": "w3:t3",
+      "terminal_id": "term_000000000016",
+      "terminal_title": "~/projects/api",
+      "terminal_title_stripped": "~/projects/api",
+      "workspace_id": "w3"
+    },
+    {
+      "agent_status": "unknown",
+      "cwd": "/Users/user/projects/mobile-app",
+      "focused": false,
+      "foreground_cwd": "/Users/user/projects/mobile-app",
+      "pane_id": "w3:pB",
+      "revision": 6,
+      "scroll": {
+        "max_offset_from_bottom": 0,
+        "offset_from_bottom": 0,
+        "viewport_rows": 63
+      },
+      "tab_id": "w3:t7",
+      "terminal_id": "term_000000000017",
+      "terminal_title": "~/projects/mobile-app",
+      "terminal_title_stripped": "~/projects/mobile-app",
+      "workspace_id": "w3"
+    },
+    {
+      "agent_status": "unknown",
+      "cwd": "/Users/user/projects/desktop-app",
+      "focused": false,
+      "foreground_cwd": "/Users/user/projects/desktop-app",
+      "pane_id": "w3:pC",
+      "revision": 8,
+      "scroll": {
+        "max_offset_from_bottom": 271,
+        "offset_from_bottom": 0,
+        "viewport_rows": 63
+      },
+      "tab_id": "w3:t8",
+      "terminal_id": "term_000000000018",
+      "terminal_title": "desktop-app: make run-debug",
+      "terminal_title_stripped": "desktop-app: make run-debug",
+      "workspace_id": "w3"
+    },
+    {
+      "agent_status": "unknown",
+      "cwd": "/Users/user/projects/dashboard",
+      "focused": false,
+      "foreground_cwd": "/Users/user/projects/dashboard",
+      "pane_id": "w3:pD",
+      "revision": 6,
+      "scroll": {
+        "max_offset_from_bottom": 0,
+        "offset_from_bottom": 0,
+        "viewport_rows": 63
+      },
+      "tab_id": "w3:t9",
+      "terminal_id": "term_000000000019",
+      "terminal_title": "~/projects/dashboard",
+      "terminal_title_stripped": "~/projects/dashboard",
+      "workspace_id": "w3"
+    },
+    {
+      "agent_status": "unknown",
+      "cwd": "/Users/user/projects/website",
+      "focused": false,
+      "foreground_cwd": "/Users/user/projects/website",
+      "pane_id": "w3:pE",
+      "revision": 6,
+      "scroll": {
+        "max_offset_from_bottom": 0,
+        "offset_from_bottom": 0,
+        "viewport_rows": 63
+      },
+      "tab_id": "w3:tA",
+      "terminal_id": "term_000000000020",
+      "terminal_title": "~/projects/website",
+      "terminal_title_stripped": "~/projects/website",
+      "workspace_id": "w3"
+    }
+  ],
+  "protocol": 19,
+  "tabs": [
+    {
+      "agent_status": "working",
+      "focused": false,
+      "label": " 5: nvim > codex ",
+      "number": 5,
+      "pane_count": 3,
+      "tab_id": "w5:t5",
+      "workspace_id": "w5"
+    },
+    {
+      "agent_status": "working",
+      "focused": false,
+      "label": " 3: herdr > codex ",
+      "number": 3,
+      "pane_count": 3,
+      "tab_id": "w5:t3",
+      "workspace_id": "w5"
+    },
+    {
+      "agent_status": "unknown",
+      "focused": false,
+      "label": " 4: tmux > zsh ",
+      "number": 4,
+      "pane_count": 1,
+      "tab_id": "w5:t4",
+      "workspace_id": "w5"
+    },
+    {
+      "agent_status": "idle",
+      "focused": false,
+      "label": " 7: editor-plugin > node ",
+      "number": 7,
+      "pane_count": 2,
+      "tab_id": "w5:t7",
+      "workspace_id": "w5"
+    },
+    {
+      "agent_status": "unknown",
+      "focused": true,
+      "label": " 8: herdr > zsh ",
+      "number": 8,
+      "pane_count": 1,
+      "tab_id": "w5:t8",
+      "workspace_id": "w5"
+    },
+    {
+      "agent_status": "unknown",
+      "focused": false,
+      "label": " 6: notes > nvim ",
+      "number": 6,
+      "pane_count": 1,
+      "tab_id": "w3:t6",
+      "workspace_id": "w3"
+    },
+    {
+      "agent_status": "idle",
+      "focused": false,
+      "label": " 1: backend > nvim ",
+      "number": 1,
+      "pane_count": 4,
+      "tab_id": "w3:t1",
+      "workspace_id": "w3"
+    },
+    {
+      "agent_status": "unknown",
+      "focused": false,
+      "label": " 3: api > zsh ",
+      "number": 3,
+      "pane_count": 1,
+      "tab_id": "w3:t3",
+      "workspace_id": "w3"
+    },
+    {
+      "agent_status": "unknown",
+      "focused": false,
+      "label": " 7: mobile-app > zsh ",
+      "number": 7,
+      "pane_count": 1,
+      "tab_id": "w3:t7",
+      "workspace_id": "w3"
+    },
+    {
+      "agent_status": "unknown",
+      "focused": false,
+      "label": " 8: desktop-app > Reel ",
+      "number": 8,
+      "pane_count": 1,
+      "tab_id": "w3:t8",
+      "workspace_id": "w3"
+    },
+    {
+      "agent_status": "unknown",
+      "focused": false,
+      "label": " 9: dashboard > zsh ",
+      "number": 9,
+      "pane_count": 1,
+      "tab_id": "w3:t9",
+      "workspace_id": "w3"
+    },
+    {
+      "agent_status": "unknown",
+      "focused": false,
+      "label": " 10: website > zsh ",
+      "number": 10,
+      "pane_count": 1,
+      "tab_id": "w3:tA",
+      "workspace_id": "w3"
+    }
+  ],
+  "version": "0.8.0",
+  "workspaces": [
+    {
+      "active_tab_id": "w5:t8",
+      "agent_status": "working",
+      "focused": true,
+      "label": "config",
+      "number": 1,
+      "pane_count": 10,
+      "tab_count": 5,
+      "workspace_id": "w5"
+    },
+    {
+      "active_tab_id": "w3:t1",
+      "agent_status": "idle",
+      "focused": false,
+      "label": "projects",
+      "number": 2,
+      "pane_count": 10,
+      "tab_count": 7,
+      "workspace_id": "w3"
+    }
+  ]
+}

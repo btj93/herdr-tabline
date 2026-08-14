@@ -1,0 +1,51 @@
+{
+  "foreground_process_group_id": 69372,
+  "foreground_processes": [
+    {
+      "argv": [
+        "node",
+        "/Users/user/.npm/_npx/0000000000000002/node_modules/.bin/context7-mcp"
+      ],
+      "argv0": "node",
+      "cmdline": "node /Users/user/.npm/_npx/0000000000000002/node_modules/.bin/context7-mcp",
+      "cwd": "/Users/user/.config/nvim",
+      "name": "node",
+      "pid": 69564
+    },
+    {
+      "argv0": "context7-mcp",
+      "cwd": "/Users/user/.config/nvim",
+      "name": "node",
+      "pid": 69549
+    },
+    {
+      "argv": [
+        "node",
+        "/Users/user/.npm/_npx/0000000000000001/node_modules/.bin/playwright-mcp"
+      ],
+      "argv0": "node",
+      "cmdline": "node /Users/user/.npm/_npx/0000000000000001/node_modules/.bin/playwright-mcp",
+      "cwd": "/Users/user/.config/nvim",
+      "name": "node",
+      "pid": 69548
+    },
+    {
+      "argv0": "mcp@latest",
+      "cwd": "/Users/user/.config/nvim",
+      "name": "node",
+      "pid": 69533
+    },
+    {
+      "argv": [
+        "claude"
+      ],
+      "argv0": "claude",
+      "cmdline": "claude",
+      "cwd": "/Users/user/.config/nvim",
+      "name": "2.1.232",
+      "pid": 69372
+    }
+  ],
+  "pane_id": "w5:pB",
+  "shell_pid": 69162
+}

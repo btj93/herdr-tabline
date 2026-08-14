@@ -1,0 +1,28 @@
+{
+  "foreground_process_group_id": 19857,
+  "foreground_processes": [
+    {
+      "argv": [
+        "/opt/homebrew/lib/node_modules/@openai/codex/node_modules/@openai/codex-darwin-arm64/vendor/aarch64-apple-darwin/bin/codex"
+      ],
+      "argv0": "codex",
+      "cmdline": "/opt/homebrew/lib/node_modules/@openai/codex/node_modules/@openai/codex-darwin-arm64/vendor/aarch64-apple-darwin/bin/codex",
+      "cwd": "/Users/user/.config/nvim",
+      "name": "codex",
+      "pid": 19858
+    },
+    {
+      "argv": [
+        "node",
+        "/opt/homebrew/bin/codex"
+      ],
+      "argv0": "node",
+      "cmdline": "node /opt/homebrew/bin/codex",
+      "cwd": "/Users/user/.config/nvim",
+      "name": "node",
+      "pid": 19857
+    }
+  ],
+  "pane_id": "w5:p6",
+  "shell_pid": 18874
+}
