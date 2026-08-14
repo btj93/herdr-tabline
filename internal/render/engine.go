@@ -22,6 +22,14 @@ type Template struct {
 	parsed *template.Template
 }
 
+// Source returns the original template text.
+func (t *Template) Source() string {
+	if t == nil {
+		return ""
+	}
+	return t.source
+}
+
 // New constructs a renderer with the configured display aliases and icons.
 func New(aliases map[string]map[string]string, icons map[string]map[string]string) *Engine {
 	return &Engine{
