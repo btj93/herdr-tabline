@@ -36,6 +36,10 @@ func TestFixturesCarryNoPersonalData(t *testing.T) {
 		"~/projects/website": true,
 	}
 
+	liveUUID := regexp.MustCompile(`[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}`)
+	terminalID := regexp.MustCompile(`term_[0-9a-f]+`)
+	placeholderTerminalID := regexp.MustCompile(`^term_0{6}\d{6}$`)
+
 	entries, err := os.ReadDir("testdata")
 	if err != nil {
 		t.Fatal(err)
@@ -50,6 +54,18 @@ func TestFixturesCarryNoPersonalData(t *testing.T) {
 		}
 		if match := homePath.Find(raw); match != nil {
 			t.Errorf("%s contains a real home path: %s", entry.Name(), match)
+		}
+		// Opaque live identifiers: session UUIDs and terminal handles. These carry no
+		// username, path, or task text, so the rules above do not see them — which is
+		// exactly how they survived two earlier sweeps.
+		if match := liveUUID.Find(raw); match != nil {
+			t.Errorf("%s contains a live session UUID: %s", entry.Name(), match)
+		}
+		for _, id := range terminalID.FindAllString(string(raw), -1) {
+			if !placeholderTerminalID.MatchString(id) {
+				t.Errorf("%s contains a live terminal id %q; use the term_00000000000N form",
+					entry.Name(), id)
+			}
 		}
 		var document any
 		if err := json.Unmarshal(raw, &document); err != nil {
