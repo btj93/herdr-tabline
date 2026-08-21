@@ -44,10 +44,14 @@ func TestUnixClientOrdinaryCallsUseFreshConnectionsAndRecordedFixtures(t *testin
 	listener, socket := newUnixListener(t)
 	requests := make(chan protocolRequest, 3)
 	serverErrors := make(chan error, 3)
+	// Wrap the recorded fixtures in the real typed result envelopes. Herdr nests the
+	// payload under "snapshot" / "process_info"; feeding the bare inner object here is what
+	// let a transport that never unwrapped the envelope pass every offline test while
+	// decoding an empty snapshot against the live server.
 	fixtures := map[string]json.RawMessage{
-		"session.snapshot": readFixture(t, "snapshot.json"),
-		"pane-codex":       readFixture(t, "process_info_codex.json"),
-		"pane-claude":      readFixture(t, "process_info_claude.json"),
+		"session.snapshot": wrapResult("session_snapshot", "snapshot", readFixture(t, "snapshot.json")),
+		"pane-codex":       wrapResult("pane_process_info", "process_info", readFixture(t, "process_info_codex.json")),
+		"pane-claude":      wrapResult("pane_process_info", "process_info", readFixture(t, "process_info_claude.json")),
 	}
 	go func() {
 		for range 3 {
@@ -461,6 +465,18 @@ func newSocketPath(t *testing.T) string {
 	}
 	t.Cleanup(func() { _ = os.RemoveAll(dir) })
 	return filepath.Join(dir, "socket")
+}
+
+// wrapResult builds the typed success-result envelope Herdr actually sends.
+func wrapResult(kind, member string, payload json.RawMessage) json.RawMessage {
+	envelope, err := json.Marshal(map[string]any{
+		"type": kind,
+		member: payload,
+	})
+	if err != nil {
+		panic(err)
+	}
+	return envelope
 }
 
 func readProtocolRequest(conn net.Conn) (protocolRequest, error) {

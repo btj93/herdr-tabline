@@ -108,19 +108,27 @@ func NewUnixClient(socket string) Client {
 	}
 }
 
+// Snapshot unwraps the typed result envelope. Herdr returns
+// {"type":"session_snapshot","snapshot":{...}}, not the snapshot fields at the top level;
+// decoding the envelope straight into Snapshot silently yields a zero value with no tabs.
 func (c *unixClient) Snapshot(ctx context.Context) (Snapshot, error) {
-	var snapshot Snapshot
-	err := c.call(ctx, "session.snapshot", struct{}{}, &snapshot)
-	return snapshot, err
+	var result struct {
+		Snapshot Snapshot `json:"snapshot"`
+	}
+	err := c.call(ctx, "session.snapshot", struct{}{}, &result)
+	return result.Snapshot, err
 }
 
 func (c *unixClient) ProcessInfo(ctx context.Context, paneID string) (ProcessInfo, error) {
 	params := struct {
 		PaneID string `json:"pane_id"`
 	}{PaneID: paneID}
-	var info ProcessInfo
-	err := c.call(ctx, "pane.process_info", params, &info)
-	return info, err
+	// Same envelope rule as Snapshot: the payload is nested under "process_info".
+	var result struct {
+		ProcessInfo ProcessInfo `json:"process_info"`
+	}
+	err := c.call(ctx, "pane.process_info", params, &result)
+	return result.ProcessInfo, err
 }
 
 func (c *unixClient) RenameTab(ctx context.Context, tabID, label string) error {
