@@ -27,6 +27,17 @@ registered:
 herdr plugin list
 ```
 
+**Linking does not start the daemon.** The `[[startup]]` hook runs when Herdr starts, not when
+a plugin is enabled mid-session, so after linking into a running session you get no daemon
+until you either restart Herdr or start it yourself:
+
+```bash
+herdr plugin action invoke start --plugin herdr-tabline
+```
+
+Verified on Herdr 0.8.2: enabling a freshly linked plugin left the registry showing
+`enabled: true` with an empty plugin log and no process.
+
 ## Quick start
 
 Copy the example configuration into the plugin's config directory and validate it:
