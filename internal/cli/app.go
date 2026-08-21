@@ -28,7 +28,7 @@ import (
 
 const (
 	// Version and SchemaVersion appear in the exact line the manifest and docs promise.
-	Version       = "1.0.0"
+	Version       = "0.1.0"
 	SchemaVersion = 1
 
 	exitOK      = 0

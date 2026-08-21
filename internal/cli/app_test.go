@@ -27,7 +27,7 @@ func TestVersionPrintsTheExactReleaseLine(t *testing.T) {
 	if code := h.run("version"); code != 0 {
 		t.Fatalf("exit = %d, want 0 (stderr: %s)", code, h.stderr.String())
 	}
-	if got := h.stdout.String(); got != "herdr-tabline 1.0.0 schema 1\n" {
+	if got := h.stdout.String(); got != "herdr-tabline 0.1.0 schema 1\n" {
 		t.Fatalf("stdout = %q, want the exact release line", got)
 	}
 }

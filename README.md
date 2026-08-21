@@ -37,7 +37,8 @@ herdr-tabline validate-config
 ```
 
 With no configuration file at all the plugin uses built-in defaults, which reproduce the
-label format ` {{ .Tab.Number }}: {{ .Pane.Directory }} > {{ .Process.Name }} `.
+label format ` {{ .Tab.Number }}: {{ .Pane.Directory }} > {{ if .Agent.Active }}{{ statusIcon .Agent.Status }} {{ coalesce .Agent.DisplayName .Agent.Kind }}{{ else }}{{ .Process.Name }}{{ end }} ` — the detected agent when there is one, the
+foreground process otherwise.
 
 Commands:
 
@@ -48,7 +49,7 @@ Commands:
 | `rename-current` | Render and apply the label for one tab, now. |
 | `validate-config` | Compile the configuration and report problems. Needs no socket. |
 | `preview` | Print the resolved profile and label for one tab without renaming anything. |
-| `version` | Print `herdr-tabline 1.0.0 schema 1`. |
+| `version` | Print `herdr-tabline 0.1.0 schema 1`. |
 
 `daemon` also exists but is internal: `start` invokes it in a detached process. It is
 deliberately absent from the manifest's action list.
@@ -78,7 +79,7 @@ Every field, with its default:
 |---|---|---|
 | `schema_version` | `1` | Required. Only `1` exists. |
 | `mode` | `"auto"` | One of `auto`, `keybind`, `off`. |
-| `template` | ` {{ .Tab.Number }}: {{ .Pane.Directory }} > {{ .Process.Name }} ` | Go template. |
+| `template` | agent-aware; see *Template variables* | Go template. |
 | `poll_interval` | `"2s"` | Between 100ms and 1m. |
 | `refresh_debounce` | `"80ms"` | Between 0 and 2s. |
 | `max_width` | `0` | `0` means unlimited; otherwise 1–1024 cells. |
@@ -218,6 +219,12 @@ Lookups: `alias`, `statusIcon`, `formatTime`.
 `alias "process" .Process.Name` reads `[aliases.process]` and falls back to the original
 value. `statusIcon .Agent.Status` reads `[icons.agent_status]`.
 
+The default glyphs are Herdr's own "distinct symbols" indicator set, so labels match the
+rest of its UI. Herdr's other mode, `status_indicators = "dots"`, renders blocked,
+working, and done as one glyph separated only by colour — which a tab label cannot
+express. The symbols set is therefore used whichever mode you have selected, and every
+glyph stays individually overridable above.
+
 ## Aliases and icons
 
 ```toml
@@ -225,11 +232,11 @@ value. `statusIcon .Agent.Status` reads `[icons.agent_status]`.
 zsh = "shell"
 
 [icons.agent_status]
-working = "●"
-blocked = "!"
+working = "◐"
+blocked = "×"
 done = "✓"
 idle = "○"
-unknown = "?"
+unknown = "·"
 ```
 
 ## Validation and preview

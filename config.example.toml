@@ -1,6 +1,6 @@
 schema_version = 1
 mode = "auto"
-template = ' {{ .Tab.Number }}: {{ .Pane.Directory }} > {{ .Process.Name }} '
+template = ' {{ .Tab.Number }}: {{ .Pane.Directory }} > {{ if .Agent.Active }}{{ statusIcon .Agent.Status }} {{ coalesce .Agent.DisplayName .Agent.Kind }}{{ else }}{{ .Process.Name }}{{ end }} '
 poll_interval = "2s"
 refresh_debounce = "80ms"
 max_width = 0
@@ -9,11 +9,11 @@ max_width = 0
 zsh = "shell"
 
 [icons.agent_status]
-working = "●"
-blocked = "!"
+working = "◐"
+blocked = "×"
 done = "✓"
 idle = "○"
-unknown = "?"
+unknown = "·"
 
 [[profiles]]
 name = "coding-agents"

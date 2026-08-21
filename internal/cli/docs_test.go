@@ -151,7 +151,7 @@ func TestReleaseMetadata(t *testing.T) {
 		}
 	}
 	changelog := readRepoFile(t, "CHANGELOG.md")
-	for _, fact := range []string{"1.0.0", "2026-08-14"} {
+	for _, fact := range []string{"0.1.0", "2026-08-21"} {
 		if !strings.Contains(changelog, fact) {
 			t.Errorf("CHANGELOG.md does not contain %q", fact)
 		}

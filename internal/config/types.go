@@ -8,7 +8,17 @@ import (
 	"github.com/btj93/herdr-tabline/internal/render"
 )
 
-const defaultTemplate = ` {{ .Tab.Number }}: {{ .Pane.Directory }} > {{ .Process.Name }} `
+// defaultTemplate names the detected agent when there is one, and the foreground process
+// otherwise.
+//
+// Herdr's agent detection is the only source that is correct for every agent. The first
+// foreground record reads "codex" correctly but "node" or "caffeinate" for Claude, while
+// the process-group leader reads "claude" correctly but "node" for Codex. Neither process
+// heuristic works for both, so neither is used for a pane Herdr has already identified.
+const defaultTemplate = ` {{ .Tab.Number }}: {{ .Pane.Directory }} > ` +
+	`{{ if .Agent.Active }}{{ statusIcon .Agent.Status }} ` +
+	`{{ coalesce .Agent.DisplayName .Agent.Kind }}` +
+	`{{ else }}{{ .Process.Name }}{{ end }} `
 
 // Mode controls when tab labels are written.
 type Mode string

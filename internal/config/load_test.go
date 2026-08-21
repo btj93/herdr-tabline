@@ -19,8 +19,17 @@ func TestMissingConfigUsesCompatibilityDefaults(t *testing.T) {
 		t.Fatalf("found=%v err=%v", found, err)
 	}
 	effective := cfg.Resolve(model.Context{})
-	if effective.Mode != config.ModeAuto || effective.Template.Source() != ` {{ .Tab.Number }}: {{ .Pane.Directory }} > {{ .Process.Name }} ` {
-		t.Fatalf("defaults = %#v", effective)
+	// The default template names the detected agent when there is one and the foreground
+	// process otherwise; see TestDefaultTemplateNamesTheAgentNotItsRuntime for why the
+	// process alone is not sufficient.
+	source := effective.Template.Source()
+	if effective.Mode != config.ModeAuto {
+		t.Fatalf("default mode = %q", effective.Mode)
+	}
+	for _, fragment := range []string{".Tab.Number", ".Pane.Directory", ".Agent.Active", ".Process.Name"} {
+		if !strings.Contains(source, fragment) {
+			t.Fatalf("default template %q is missing %s", source, fragment)
+		}
 	}
 	if cfg.PollInterval != 2*time.Second || cfg.RefreshDebounce != 80*time.Millisecond {
 		t.Fatalf("timings = %s, %s", cfg.PollInterval, cfg.RefreshDebounce)
@@ -37,7 +46,8 @@ func TestMissingConfigSeedsDocumentedAgentStatusIcons(t *testing.T) {
 		t.Fatal(err)
 	}
 	label, err := render.New(nil, nil).Execute(cfg.Resolve(model.Context{Agent: model.Agent{Status: "working"}}).Template, model.Context{Agent: model.Agent{Status: "working"}}, 0)
-	if err != nil || label != "●" {
+	// Herdr's "distinct symbols" glyph for working; see TestDefaultStatusIconsMatchHerdrSymbols.
+	if err != nil || label != "◐" {
 		t.Fatalf("label=%q err=%v", label, err)
 	}
 }

@@ -82,12 +82,17 @@ func compile(input source) (*Compiled, error) {
 	if input.Aliases == nil {
 		input.Aliases = map[string]map[string]string{}
 	}
+	// Herdr's own "distinct symbols" indicator set, so labels match the rest of its UI.
+	// Herdr's other mode, "color dots", renders blocked, working, and done as one glyph
+	// separated only by colour — which a tab label cannot express, since tab.rename takes
+	// plain text. The symbols set is therefore used unconditionally, and every entry stays
+	// individually overridable through [icons.agent_status].
 	agentStatusIcons := map[string]string{
-		"working": "●",
-		"blocked": "!",
+		"working": "◐",
+		"blocked": "×",
 		"done":    "✓",
 		"idle":    "○",
-		"unknown": "?",
+		"unknown": "·",
 	}
 	for status, icon := range input.Icons.AgentStatus {
 		agentStatusIcons[status] = icon
