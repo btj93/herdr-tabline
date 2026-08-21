@@ -355,6 +355,30 @@ func newStubClient() *stubClient {
 	return &stubClient{snapshot: snapshot}
 }
 
+// agentSpec seeds the stub snapshot's agent records for status-line tests.
+type agentSpec struct{ pane, workspace, kind, status string }
+
+var errSocketGone = errors.New("socket is gone")
+
+func (c *stubClient) withAgents(specs ...agentSpec) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	c.snapshot.Agents = nil
+	for _, spec := range specs {
+		c.snapshot.Agents = append(c.snapshot.Agents, herdrapi.Agent{
+			PaneID: spec.pane, WorkspaceID: spec.workspace,
+			Agent: spec.kind, AgentStatus: spec.status,
+		})
+	}
+}
+
+func writeFile(t *testing.T, path, body string) {
+	t.Helper()
+	if err := os.WriteFile(path, []byte(body), 0o600); err != nil {
+		t.Fatal(err)
+	}
+}
+
 func (c *stubClient) Snapshot(context.Context) (herdrapi.Snapshot, error) {
 	c.mu.Lock()
 	defer c.mu.Unlock()

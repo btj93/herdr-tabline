@@ -65,6 +65,21 @@ func (e *Engine) Execute(tpl *Template, context model.Context, maxWidth int) (st
 	return applyMaxWidth(sanitizeControls(rendered), maxWidth), nil
 }
 
+// ExecuteSession renders a whole-session template for the status line. It shares the
+// control sanitization and width ceiling of Execute, because the output lands in the same
+// plain-text tab bar, but permits an empty result: a quiet session legitimately has nothing
+// to report, where an empty tab label would be a bug.
+func (e *Engine) ExecuteSession(tpl *Template, session model.Session, maxWidth int) (string, error) {
+	if tpl == nil || tpl.parsed == nil {
+		return "", fmt.Errorf("template is nil")
+	}
+	var output bytes.Buffer
+	if err := tpl.parsed.Execute(&output, session); err != nil {
+		return "", fmt.Errorf("execute template %s: %w", tpl.parsed.Name(), err)
+	}
+	return strings.TrimSpace(applyMaxWidth(sanitizeControls(output.String()), maxWidth)), nil
+}
+
 func sanitizeControls(value string) string {
 	return strings.Map(func(r rune) rune {
 		if unicode.IsControl(r) {

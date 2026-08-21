@@ -102,8 +102,15 @@ func compile(input source) (*Compiled, error) {
 	if err != nil {
 		return nil, err
 	}
+	if input.Status.Template == "" {
+		input.Status.Template = defaultStatusTemplate
+	}
+	statusTemplate, err := engine.Compile("status", input.Status.Template)
+	if err != nil {
+		return nil, err
+	}
 	compiled := &Compiled{
-		Mode: mode, Template: template, MaxWidth: input.MaxWidth,
+		Mode: mode, Template: template, Status: statusTemplate, MaxWidth: input.MaxWidth,
 		PollInterval: pollInterval, RefreshDebounce: refreshDebounce,
 		Aliases: input.Aliases, Icons: map[string]map[string]string{"agent_status": agentStatusIcons},
 	}

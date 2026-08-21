@@ -75,3 +75,21 @@ type LabelHistory struct {
 	SourceLabel   string `json:"source_label"`
 	RenderedLabel string `json:"rendered_label"`
 }
+
+// Session is the whole-session context used by the `status` command, which renders one
+// line for Herdr's tab-bar right edge rather than a per-tab label.
+type Session struct {
+	Workspace  Workspace
+	Workspaces int
+
+	// Agent counts across every workspace.
+	Agents                                int
+	Blocked, Working, Done, Idle, Unknown int
+
+	// Attention is the number of agents actively waiting on the user. It is currently the
+	// blocked count, named separately so the meaning survives if Herdr adds another state
+	// that needs a person.
+	Attention int
+
+	Now time.Time
+}

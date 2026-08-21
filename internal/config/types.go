@@ -48,6 +48,17 @@ type Profile struct {
 	Match    Match   `toml:"match"`
 }
 
+// defaultStatusTemplate renders the tab-bar right edge: attention-worthy counts first,
+// each omitted when zero, then the focused space name. It stays quiet on a calm session.
+const defaultStatusTemplate = `{{ if .Blocked }}{{ statusIcon "blocked" }}{{ .Blocked }} {{ end }}` +
+	`{{ if .Working }}{{ statusIcon "working" }}{{ .Working }} {{ end }}` +
+	`{{ if .Done }}{{ statusIcon "done" }}{{ .Done }} {{ end }}` +
+	`{{ .Workspace.Label }}`
+
+type statusSource struct {
+	Template string `toml:"template"`
+}
+
 type icons struct {
 	AgentStatus map[string]string `toml:"agent_status"`
 }
@@ -62,6 +73,7 @@ type source struct {
 	Aliases         map[string]map[string]string `toml:"aliases"`
 	Icons           icons                        `toml:"icons"`
 	Profiles        []Profile                    `toml:"profiles"`
+	Status          statusSource                 `toml:"status"`
 }
 
 // Effective is the resolved rendering configuration for one tab context.
@@ -81,7 +93,9 @@ type Compiled struct {
 	RefreshDebounce time.Duration
 	Aliases         map[string]map[string]string
 	Icons           map[string]map[string]string
-	profiles        []compiledProfile
+	// Status is the compiled tab-bar right-edge template used by the status command.
+	Status   *render.Template
+	profiles []compiledProfile
 }
 
 type compiledProfile struct {

@@ -71,7 +71,7 @@ func Run(args []string, env Env, stdin io.Reader, stdout, stderr io.Writer, deps
 		return exitUsage
 	}
 	command, rest := args[0], args[1:]
-	if len(rest) > 0 {
+	if len(rest) > 0 && command != "status" {
 		fmt.Fprintf(stderr, "herdr-tabline: %s takes no arguments\n", command)
 		return exitUsage
 	}
@@ -94,6 +94,8 @@ func Run(args []string, env Env, stdin io.Reader, stdout, stderr io.Writer, deps
 		err = app.stop()
 	case "daemon":
 		err = app.daemon()
+	case "status":
+		err = app.status(rest)
 	default:
 		fmt.Fprintf(stderr, "herdr-tabline: unknown command %q\n\n%s", command, usageText())
 		return exitUsage
@@ -110,7 +112,7 @@ func Run(args []string, env Env, stdin io.Reader, stdout, stderr io.Writer, deps
 }
 
 func usageText() string {
-	return "usage: herdr-tabline <start|stop|rename-current|validate-config|preview|version>\n"
+	return "usage: herdr-tabline <start|stop|rename-current|validate-config|preview|status|version>\n"
 }
 
 type application struct {

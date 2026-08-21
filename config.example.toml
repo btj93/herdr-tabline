@@ -32,3 +32,7 @@ template = ' {{ .Tab.Number }}: logs/{{ .Process.Name }} '
 
 [profiles.match]
 process_regex = ["^(tail|less|lnav)$"]
+
+# Tab-bar right edge, rendered by the `status` command. Counts are omitted when zero.
+[status]
+template = '{{ if .Blocked }}{{ statusIcon "blocked" }}{{ .Blocked }} {{ end }}{{ if .Working }}{{ statusIcon "working" }}{{ .Working }} {{ end }}{{ if .Done }}{{ statusIcon "done" }}{{ .Done }} {{ end }}{{ .Workspace.Label }}'

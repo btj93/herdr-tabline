@@ -49,6 +49,7 @@ Commands:
 | `rename-current` | Render and apply the label for one tab, now. |
 | `validate-config` | Compile the configuration and report problems. Needs no socket. |
 | `preview` | Print the resolved profile and label for one tab without renaming anything. |
+| `status` | Print a one-line session summary for Herdr's tab-bar right edge. |
 | `version` | Print `herdr-tabline 0.1.0 schema 1`. |
 
 `daemon` also exists but is internal: `start` invokes it in a detached process. It is
@@ -237,6 +238,41 @@ blocked = "×"
 done = "✓"
 idle = "○"
 unknown = "·"
+```
+
+## Tab bar right edge
+
+`status` prints one line summarising the whole session — how many agents are blocked,
+working, and done, then the focused space name:
+
+```
+×1 ◐3 ✓2 projects
+```
+
+Counts are omitted when zero, so a calm session shows just the space name. Wire it into
+Herdr's own configuration:
+
+```toml
+[ui]
+tab_bar_right = [
+  { type = "command", command = "/path/to/bin/herdr-tabline status",
+    interval_seconds = 2, timeout_seconds = 1 },
+]
+```
+
+Unlike the other commands, `status` accepts `--socket` and `--config`, and falls back to
+Herdr's default socket location. `tab_bar_right` entries are UI configuration rather than
+plugin actions, so Herdr may invoke them with a bare environment; `status` is built to work
+without one. It writes nothing to stdout on failure, because whatever it prints lands in
+the tab bar on every poll.
+
+Customise it with a `[status]` template. The context is the whole session — `.Blocked`,
+`.Working`, `.Done`, `.Idle`, `.Unknown`, `.Attention`, `.Agents`, `.Workspaces`,
+`.Workspace`, and `.Now`:
+
+```toml
+[status]
+template = '{{ if .Attention }}needs you: {{ .Attention }} | {{ end }}{{ .Workspace.Label }}'
 ```
 
 ## Validation and preview
