@@ -148,7 +148,13 @@ wrote last.
 `.Workspace.Focused`, `.Workspace.TabCount`, `.Workspace.PaneCount`,
 `.Workspace.ActiveTabID`, `.Workspace.AgentStatus`, `.Workspace.Tokens`.
 
-`.Workspace.Tokens` holds metadata tokens reported through `workspace.report_metadata`.
+`.Workspace.Tokens` holds metadata tokens reported through `workspace.report_metadata` by
+some other plugin. **Absent is the normal state, not an edge case:** tokens are missing
+before any producer's first write, after a producer stops and its TTL expires — which is
+the designed behaviour, not a fault — and permanently if you never install a producer at
+all. Referring to a token that is not currently published renders as empty rather than as
+a placeholder, so a template written for a producer you have not installed still produces
+a usable label. The same applies to `.Pane.Tokens` and `.Agent.Tokens`.
 
 Worktree data, present only when Herdr reports one: `.Workspace.Worktree.Present`,
 `.Workspace.Worktree.RepoKey`, `.Workspace.Worktree.RepoName`,
