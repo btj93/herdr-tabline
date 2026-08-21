@@ -156,6 +156,23 @@ all. Referring to a token that is not currently published renders as empty rathe
 a placeholder, so a template written for a producer you have not installed still produces
 a usable label. The same applies to `.Pane.Tokens` and `.Agent.Tokens`.
 
+herdr-tabline never publishes tokens; it only reads them. Nothing here writes workspace
+metadata, so **every token-reading feature is inert unless a producer plugin is installed**
+— a blank segment in that case is correct behaviour, not a bug. The companion
+`herdr-tokens` plugin publishes `st_working`, `st_blocked`, `st_done`, `st_idle`,
+`st_unknown`, `st_none` (exactly one present per workspace, carrying the workspace label),
+plus `att_blocked` and `n_agents`.
+
+Both access forms are safe:
+
+```
+{{ .Workspace.Tokens.st_blocked }}                          renders empty when absent
+{{ with .Workspace.Tokens.st_blocked }}[{{ . }}]{{ end }}   brackets vanish too
+```
+
+Use the second when surrounding punctuation should disappear along with the value —
+otherwise an absent token leaves you with an empty `[]`.
+
 Worktree data, present only when Herdr reports one: `.Workspace.Worktree.Present`,
 `.Workspace.Worktree.RepoKey`, `.Workspace.Worktree.RepoName`,
 `.Workspace.Worktree.RepoRoot`, `.Workspace.Worktree.CheckoutPath`,
