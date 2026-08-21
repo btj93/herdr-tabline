@@ -62,7 +62,7 @@ func (e *Engine) Execute(tpl *Template, context model.Context, maxWidth int) (st
 	if rendered == "" || isControlOnly(rendered) {
 		return "", fmt.Errorf("template %s rendered no displayable text", tpl.parsed.Name())
 	}
-	return applyMaxWidth(sanitizeControls(rendered), maxWidth), nil
+	return applyMaxWidth(sanitizeControls(stripMissingValues(rendered)), maxWidth), nil
 }
 
 // ExecuteSession renders a whole-session template for the status line. It shares the
@@ -77,7 +77,18 @@ func (e *Engine) ExecuteSession(tpl *Template, session model.Session, maxWidth i
 	if err := tpl.parsed.Execute(&output, session); err != nil {
 		return "", fmt.Errorf("execute template %s: %w", tpl.parsed.Name(), err)
 	}
-	return strings.TrimSpace(applyMaxWidth(sanitizeControls(output.String()), maxWidth)), nil
+	return strings.TrimSpace(applyMaxWidth(sanitizeControls(stripMissingValues(output.String())), maxWidth)), nil
+}
+
+// stripMissingValues removes text/template's `<no value>` placeholder.
+//
+// missingkey=zero does not prevent it: a missing key in a map[string]any yields an untyped
+// nil, which the template package renders as that literal. The token maps Herdr supplies
+// are exactly that shape, so a template referring to a token that is not currently
+// published — the normal case when no producer is running — would otherwise print
+// `<no value>` into the tab bar. No legitimate label contains that string.
+func stripMissingValues(value string) string {
+	return strings.ReplaceAll(value, "<no value>", "")
 }
 
 func sanitizeControls(value string) string {
