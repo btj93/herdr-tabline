@@ -1,0 +1,47 @@
+id = "herdr-tabline"
+name = "Herdr Tabline"
+version = "1.0.0"
+min_herdr_version = "0.7.0"
+description = "Render Herdr tab labels with safe templates and project-aware profiles."
+platforms = ["linux", "macos"]
+
+[[build]]
+platforms = ["linux", "macos"]
+command = ["go", "build", "-o", "bin/herdr-tabline", "./cmd/herdr-tabline"]
+
+[[startup]]
+command = ["./bin/herdr-tabline", "start"]
+
+[[events]]
+on = "pane.created"
+command = ["./bin/herdr-tabline", "start"]
+
+[[actions]]
+id = "start"
+title = "Start Herdr Tabline"
+contexts = ["global"]
+command = ["./bin/herdr-tabline", "start"]
+
+[[actions]]
+id = "stop"
+title = "Stop Herdr Tabline"
+contexts = ["global"]
+command = ["./bin/herdr-tabline", "stop"]
+
+[[actions]]
+id = "rename-current"
+title = "Render current tab label"
+contexts = ["global", "tab", "pane"]
+command = ["./bin/herdr-tabline", "rename-current"]
+
+[[actions]]
+id = "validate-config"
+title = "Validate Herdr Tabline config"
+contexts = ["global"]
+command = ["./bin/herdr-tabline", "validate-config"]
+
+[[actions]]
+id = "preview"
+title = "Preview current tab label"
+contexts = ["global", "tab", "pane"]
+command = ["./bin/herdr-tabline", "preview"]

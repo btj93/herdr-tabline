@@ -1,0 +1,34 @@
+schema_version = 1
+mode = "auto"
+template = ' {{ .Tab.Number }}: {{ .Pane.Directory }} > {{ .Process.Name }} '
+poll_interval = "2s"
+refresh_debounce = "80ms"
+max_width = 0
+
+[aliases.process]
+zsh = "shell"
+
+[icons.agent_status]
+working = "●"
+blocked = "!"
+done = "✓"
+idle = "○"
+unknown = "?"
+
+[[profiles]]
+name = "coding-agents"
+mode = "auto"
+template = ' {{ .Tab.Number }}: {{ .Pane.Directory }} > {{ statusIcon .Agent.Status }} {{ coalesce .Agent.DisplayName .Agent.Name .Agent.Kind }} '
+max_width = 36
+
+[profiles.match]
+cwd_glob = ["~/Projects/**"]
+agent_regex = ["^(codex|claude)$"]
+
+[[profiles]]
+name = "manual-logs"
+mode = "keybind"
+template = ' {{ .Tab.Number }}: logs/{{ .Process.Name }} '
+
+[profiles.match]
+process_regex = ["^(tail|less|lnav)$"]
