@@ -3,3 +3,8 @@
 *.log
 coverage.out
 coverage.html
+
+# Local agent-coordination notes; not part of the published plugin.
+AGENTS.md
+CLAUDE.md
+agent-memory/
