@@ -199,7 +199,7 @@ func (s *Store) writeAtomically(encoded []byte) error {
 	if err := temporary.Close(); err != nil {
 		return fmt.Errorf("close temporary state: %w", err)
 	}
-	if err := os.Rename(name, s.paths.State); err != nil {
+	if err := commitRename(name, s.paths.State); err != nil {
 		return fmt.Errorf("replace state %q: %w", s.paths.State, err)
 	}
 	committed = true
@@ -218,3 +218,11 @@ func syncDir(dir string) {
 	defer handle.Close()
 	_ = handle.Sync()
 }
+
+// commitRename is the final, atomic step of a state write, indirected so a test can fail
+// it. The cleanup that removes the temporary file only runs when a write fails after the
+// file exists, and that cannot be provoked from outside: a directory at the state path
+// makes the earlier read fail, and an unwritable root makes CreateTemp fail — both before
+// any temporary file is created. Without this seam the cleanup is unreachable by test, and
+// deleting it entirely would go unnoticed.
+var commitRename = os.Rename

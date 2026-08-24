@@ -4,21 +4,24 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
-	"regexp"
 	"strings"
 	"testing"
 )
 
-// TestFixturesCarryNoPersonalData is a release guard, not a behaviour test.
+// TestFixtureTitlesAreGeneric is a release guard, not a behaviour test.
+//
+// It covers TITLES only. Identifiers and paths are covered positively by
+// TestFixturesConformToAPositiveSchema, which enumerates permitted keys and value forms.
+// The shape-based scans that used to live here were removed: a scan for known-bad shapes
+// cannot tell a leak from its own fix, and two independently written scanners each flagged
+// the other project's placeholders while missing shapes neither had anticipated.
 //
 // These fixtures were recorded from a live session. A recording carries the operator's
 // username, absolute home paths, real project directory names, and — the one that is
 // easiest to miss — terminal titles, which coding agents set to a summary of whatever the
 // user is actually working on. Re-recording a fixture without sanitizing it would publish
 // all of that. This test fails loudly when that happens.
-func TestFixturesCarryNoPersonalData(t *testing.T) {
-	// Only this home directory may appear. Any other /Users/<name> is a real account.
-	homePath := regexp.MustCompile(`/Users/(?:[^u/"]|u(?:[^s/"]|s(?:[^e/"]|e(?:[^r/"]|r[^/"]))))[^"]*`)
+func TestFixtureTitlesAreGeneric(t *testing.T) {
 
 	// Terminal titles are the highest-risk field. Anything not on this list is either new
 	// personal data or a deliberate addition that belongs on the list.
@@ -36,10 +39,6 @@ func TestFixturesCarryNoPersonalData(t *testing.T) {
 		"~/projects/website": true,
 	}
 
-	liveUUID := regexp.MustCompile(`[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}`)
-	terminalID := regexp.MustCompile(`term_[0-9a-f]+`)
-	placeholderTerminalID := regexp.MustCompile(`^term_0{6}\d{6}$`)
-
 	entries, err := os.ReadDir("testdata")
 	if err != nil {
 		t.Fatal(err)
@@ -51,21 +50,6 @@ func TestFixturesCarryNoPersonalData(t *testing.T) {
 		raw, err := os.ReadFile(filepath.Join("testdata", entry.Name()))
 		if err != nil {
 			t.Fatal(err)
-		}
-		if match := homePath.Find(raw); match != nil {
-			t.Errorf("%s contains a real home path: %s", entry.Name(), match)
-		}
-		// Opaque live identifiers: session UUIDs and terminal handles. These carry no
-		// username, path, or task text, so the rules above do not see them — which is
-		// exactly how they survived two earlier sweeps.
-		if match := liveUUID.Find(raw); match != nil {
-			t.Errorf("%s contains a live session UUID: %s", entry.Name(), match)
-		}
-		for _, id := range terminalID.FindAllString(string(raw), -1) {
-			if !placeholderTerminalID.MatchString(id) {
-				t.Errorf("%s contains a live terminal id %q; use the term_00000000000N form",
-					entry.Name(), id)
-			}
 		}
 		var document any
 		if err := json.Unmarshal(raw, &document); err != nil {
