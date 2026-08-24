@@ -27,6 +27,11 @@ func TestFixedHelpers(t *testing.T) {
 		{"basename", `{{ basename "/a/b/file.txt" }}`, "file.txt"},
 		{"dirname", `{{ dirname "/a/b/file.txt" }}`, "/a/b"},
 		{"cleanPath", `{{ cleanPath "/a//b/../c" }}`, "/a/c"},
+		// /Users/alice deliberately is NOT the fixture placeholder /Users/user. homeRelative
+		// must shorten ANY supported home layout, so testing it with the placeholder would
+		// not distinguish that from a hardcoded special case. This is test input for a
+		// transformation, not a placeholder anyone should copy, so the fixture schema
+		// correctly never sees it. Do not "sanitize" it to /Users/user.
 		{"homeRelative", `{{ homeRelative "/Users/alice/project" }}`, "~/project"},
 		{"default", `{{ default "fallback" "" }}`, "fallback"},
 		{"coalesce", `{{ coalesce "" "" "present" }}`, "present"},
