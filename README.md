@@ -8,7 +8,9 @@ is actually running in the tab's focused pane.
 
 ## Requirements
 
-- Herdr 0.7.0 or newer, running with its control socket available.
+- Herdr 0.8.0 or newer, running with its control socket available. 0.8.0 is the lowest
+  version the behaviour this plugin relies on was directly observed at; the release was
+  executed and verified against 0.8.2.
 - Go 1.22 or newer to build.
 - macOS or Linux.
 

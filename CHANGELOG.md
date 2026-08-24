@@ -7,8 +7,20 @@ All notable changes to this project are documented here. The format follows
 ## [0.1.0] - 2026-08-21
 
 First public release. The version reflects early public exposure, not missing
-function: the feature set below is complete and verified against Herdr 0.8.2
-(protocol 20). Expect the configuration schema to stay at `schema_version = 1`.
+function: the feature set below is complete.
+
+Two different claims about Herdr compatibility, stated separately because they are
+not the same thing:
+
+- **Floor: Herdr 0.8.0.** The lowest version the behaviour this plugin depends on was
+  directly observed at — the nested `session.snapshot` response envelope, agent-status
+  nullability, and the event semantics. A method-level schema diff would not have been
+  sufficient: methods existing at a version does not establish that their response
+  shapes were the same.
+- **Verified against: Herdr 0.8.2 (protocol 20).** The version the suite and the live
+  checks were actually executed on.
+
+Expect the configuration schema to stay at `schema_version = 1`.
 
 ### Added
 

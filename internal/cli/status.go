@@ -51,7 +51,7 @@ func (a *application) status(args []string) error {
 		// bar on every poll, so a dead socket must be silent there rather than noisy.
 		return fmt.Errorf("snapshot: %w", err)
 	}
-	line, err := render.New(compiled.Aliases, compiled.Icons).
+	line, err := render.New(compiled.Aliases(), compiled.Icons()).
 		ExecuteSession(compiled.Status, collector.BuildSession(snapshot, time.Now()), compiled.MaxWidth)
 	if err != nil {
 		return fmt.Errorf("render status: %w", err)

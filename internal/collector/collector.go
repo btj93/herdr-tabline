@@ -66,7 +66,16 @@ func Build(snapshot herdrapi.Snapshot, history map[string]model.LabelHistory, no
 	return contexts
 }
 
+// AttachProcess replaces every process and shell field on ctx.
+//
+// The scalars are reset first. Callers today build a fresh Context per tab, so nothing
+// currently reuses one, but the function reads as a setter: a caller who did reuse a
+// Context would otherwise inherit the previous pane's process, PGID leader, and shell
+// wherever the new pane supplies none — a wrong label rather than a missing one.
 func AttachProcess(ctx *model.Context, info herdrapi.ProcessInfo) {
+	ctx.Process = model.Process{}
+	ctx.ProcessByPGID = model.Process{}
+	ctx.Shell = model.Shell{}
 	ctx.Processes = make([]model.Process, 0, len(info.ForegroundProcesses))
 	for _, raw := range info.ForegroundProcesses {
 		process := normalizeProcess(raw)

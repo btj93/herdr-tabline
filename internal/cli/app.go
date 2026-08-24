@@ -202,7 +202,7 @@ func (a *application) preview() error {
 		}
 		effective := compiled.Resolve(tabContext)
 		tabContext.Profile = effective.ProfileName
-		label, err := render.New(compiled.Aliases, compiled.Icons).
+		label, err := render.New(compiled.Aliases(), compiled.Icons()).
 			Execute(effective.Template, tabContext, effective.MaxWidth)
 		if err != nil {
 			return fmt.Errorf("render: %w", err)

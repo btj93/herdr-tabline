@@ -25,7 +25,7 @@ func TestDefaultStatusIconsMatchHerdrSymbols(t *testing.T) {
 		"idle":    "○", // ○
 		"unknown": "·", // ·
 	}
-	got := compiled.Icons["agent_status"]
+	got := compiled.Icons()["agent_status"]
 	for status, icon := range want {
 		if got[status] != icon {
 			t.Errorf("icon for %q = %q, want %q", status, got[status], icon)
@@ -35,7 +35,7 @@ func TestDefaultStatusIconsMatchHerdrSymbols(t *testing.T) {
 
 func TestStatusIconsRemainIndividuallyOverridable(t *testing.T) {
 	compiled := loadConfig(t, "schema_version = 1\n[icons.agent_status]\nworking = \"🔥\"\n")
-	icons := compiled.Icons["agent_status"]
+	icons := compiled.Icons()["agent_status"]
 	if icons["working"] != "🔥" {
 		t.Fatalf("override ignored: working = %q", icons["working"])
 	}
@@ -51,7 +51,7 @@ func TestStatusIconsRemainIndividuallyOverridable(t *testing.T) {
 // process-group leader reads "claude" correctly but "node" for Codex.
 func TestDefaultTemplateNamesTheAgentNotItsRuntime(t *testing.T) {
 	compiled := loadDefaults(t)
-	engine := render.New(compiled.Aliases, compiled.Icons)
+	engine := render.New(compiled.Aliases(), compiled.Icons())
 
 	claude := model.Context{
 		Tab:     model.Tab{Number: 1},
@@ -86,7 +86,7 @@ func TestDefaultTemplateNamesTheAgentNotItsRuntime(t *testing.T) {
 // rendering exactly as it did before this change.
 func TestDefaultTemplateFallsBackToTheProcessWithoutAnAgent(t *testing.T) {
 	compiled := loadDefaults(t)
-	engine := render.New(compiled.Aliases, compiled.Icons)
+	engine := render.New(compiled.Aliases(), compiled.Icons())
 	shell := model.Context{
 		Tab:     model.Tab{Number: 3},
 		Pane:    model.Pane{Directory: "tmux"},
@@ -105,7 +105,7 @@ func TestDefaultTemplateFallsBackToTheProcessWithoutAnAgent(t *testing.T) {
 // over the bare kind when it has something friendlier.
 func TestDefaultTemplatePrefersDisplayAgentWhenHerdrSuppliesOne(t *testing.T) {
 	compiled := loadDefaults(t)
-	engine := render.New(compiled.Aliases, compiled.Icons)
+	engine := render.New(compiled.Aliases(), compiled.Icons())
 	ctx := model.Context{
 		Tab:   model.Tab{Number: 1},
 		Pane:  model.Pane{Directory: "web"},
@@ -136,4 +136,15 @@ func loadConfig(t *testing.T, body string) *config.Compiled {
 		t.Fatal(err)
 	}
 	return compiled
+}
+
+// loadConfigError loads a configuration expected to fail and returns the error.
+func loadConfigError(t *testing.T, body string) error {
+	t.Helper()
+	path := filepath.Join(t.TempDir(), "config.toml")
+	if err := os.WriteFile(path, []byte(body), 0o600); err != nil {
+		t.Fatal(err)
+	}
+	_, _, err := config.Load(path)
+	return err
 }

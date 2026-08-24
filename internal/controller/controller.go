@@ -108,7 +108,7 @@ func (c *Controller) Reconcile(ctx context.Context, trigger Trigger, targetTabID
 	// Context order is derived before any profile resolution, so Tab.Number reflects the
 	// current position of each tab rather than the number Herdr happens to report.
 	contexts := collector.Build(snapshot, history, c.now())
-	engine := render.New(compiled.Aliases, compiled.Icons)
+	engine := render.New(compiled.Aliases(), compiled.Icons())
 
 	updates := map[string]model.LabelHistory{}
 	live := make(map[string]bool, len(contexts))

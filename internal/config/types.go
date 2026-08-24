@@ -91,8 +91,8 @@ type Compiled struct {
 	MaxWidth        int
 	PollInterval    time.Duration
 	RefreshDebounce time.Duration
-	Aliases         map[string]map[string]string
-	Icons           map[string]map[string]string
+	aliases         map[string]map[string]string
+	icons           map[string]map[string]string
 	// Status is the compiled tab-bar right-edge template used by the status command.
 	Status   *render.Template
 	profiles []compiledProfile

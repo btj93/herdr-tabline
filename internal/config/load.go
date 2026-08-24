@@ -65,19 +65,21 @@ func compile(input source) (*Compiled, error) {
 	if input.PollInterval == "" {
 		input.PollInterval = defaultPollInterval.String()
 	}
-	pollInterval, err := time.ParseDuration(input.PollInterval)
-	if err != nil || pollInterval < 100*time.Millisecond || pollInterval > time.Minute {
-		return nil, fmt.Errorf("poll_interval must be between 100ms and 1m")
+	pollInterval, err := parseBoundedDuration("poll_interval", input.PollInterval,
+		100*time.Millisecond, time.Minute)
+	if err != nil {
+		return nil, err
 	}
 	if input.RefreshDebounce == "" {
 		input.RefreshDebounce = defaultRefreshDebounce.String()
 	}
-	refreshDebounce, err := time.ParseDuration(input.RefreshDebounce)
-	if err != nil || refreshDebounce < 0 || refreshDebounce > 2*time.Second {
-		return nil, fmt.Errorf("refresh_debounce must be between 0s and 2s")
+	refreshDebounce, err := parseBoundedDuration("refresh_debounce", input.RefreshDebounce,
+		0, 2*time.Second)
+	if err != nil {
+		return nil, err
 	}
 	if input.MaxWidth < 0 || input.MaxWidth > 1024 {
-		return nil, fmt.Errorf("max_width must be 0 or between 1 and 1024")
+		return nil, fmt.Errorf("max_width is %d; it must be 0 or between 1 and 1024", input.MaxWidth)
 	}
 	if input.Aliases == nil {
 		input.Aliases = map[string]map[string]string{}
@@ -112,7 +114,7 @@ func compile(input source) (*Compiled, error) {
 	compiled := &Compiled{
 		Mode: mode, Template: template, Status: statusTemplate, MaxWidth: input.MaxWidth,
 		PollInterval: pollInterval, RefreshDebounce: refreshDebounce,
-		Aliases: input.Aliases, Icons: map[string]map[string]string{"agent_status": agentStatusIcons},
+		aliases: cloneNested(input.Aliases), icons: cloneNested(map[string]map[string]string{"agent_status": agentStatusIcons}),
 	}
 	names := make(map[string]struct{}, len(input.Profiles))
 	for index, profile := range input.Profiles {
@@ -259,4 +261,39 @@ func fileSignature(path string) (signature, error) {
 		return signature{}, fmt.Errorf("read config: %w", err)
 	}
 	return signature{exists: true, modTime: info.ModTime(), size: info.Size(), hash: sha256.Sum256(data)}, nil
+}
+
+// parseBoundedDuration reports a bad duration precisely. An unparseable value and an
+// out-of-range value are different mistakes and previously produced the same message,
+// which sent a reader with a typo looking for a bounds problem they did not have. Both
+// forms echo the offending value, because a configuration error the user cannot locate is
+// barely better than no message at all.
+func parseBoundedDuration(field, value string, low, high time.Duration) (time.Duration, error) {
+	parsed, err := time.ParseDuration(value)
+	if err != nil {
+		return 0, fmt.Errorf("%s %q is not a valid duration: %w", field, value, err)
+	}
+	if parsed < low || parsed > high {
+		return 0, fmt.Errorf("%s is %s; it must be between %s and %s", field, parsed, low, high)
+	}
+	return parsed, nil
+}
+
+// Aliases and Icons return copies. Compiled is validated configuration and the controller
+// rebuilds a renderer from these maps on every refresh, so handing out the live maps would
+// let a consumer change rendering without the value ever passing through Load.
+func (c *Compiled) Aliases() map[string]map[string]string { return cloneNested(c.aliases) }
+
+func (c *Compiled) Icons() map[string]map[string]string { return cloneNested(c.icons) }
+
+func cloneNested(source map[string]map[string]string) map[string]map[string]string {
+	cloned := make(map[string]map[string]string, len(source))
+	for name, entries := range source {
+		inner := make(map[string]string, len(entries))
+		for key, value := range entries {
+			inner[key] = value
+		}
+		cloned[name] = inner
+	}
+	return cloned
 }
