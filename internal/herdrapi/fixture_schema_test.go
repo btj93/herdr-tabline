@@ -52,6 +52,21 @@ var identifierForms = map[string]*regexp.Regexp{
 	"value": regexp.MustCompile(`^fixture-session-[0-9]{2}$`),
 }
 
+// permittedLabels is an allowlist of exact label values.
+//
+// A label is a permitted KEY with an unconstrained VALUE until this exists, which is the
+// same gap in miniature: the guard knew the field and did not check it. Tab labels embed
+// directory and process names verbatim, so re-capturing a fixture would restore real
+// project names here and nothing would object. Exact values force a review on every change.
+var permittedLabels = map[string]bool{
+	"": true, "config": true, "projects": true,
+	" 1: backend > nvim ": true, " 3: api > zsh ": true, " 3: herdr > codex ": true,
+	" 4: tmux > zsh ": true, " 5: nvim > codex ": true, " 6: notes > nvim ": true,
+	" 7: editor-plugin > node ": true, " 7: mobile-app > zsh ": true,
+	" 8: desktop-app > Reel ": true, " 8: herdr > zsh ": true, " 9: dashboard > zsh ": true,
+	" 10: website > zsh ": true,
+}
+
 // pathForms constrains every filesystem path to the placeholder home.
 var pathForms = regexp.MustCompile(`^(/Users/user(/|$)|/opt/|/usr/|/bin/|/dev/|~/|$)`)
 
@@ -94,6 +109,10 @@ func walkFixture(t *testing.T, file, path string, node any) {
 				if form, guarded := identifierForms[key]; guarded && !form.MatchString(text) {
 					t.Errorf("%s%s: %s = %q does not match its permitted form %s",
 						file, path, key, text, form)
+				}
+				if key == "label" && !permittedLabels[text] {
+					t.Errorf("%s%s: label %q is not on the allowlist — labels embed directory "+
+						"and process names; sanitize it or add it", file, path, text)
 				}
 				if pathKeys[key] && !pathForms.MatchString(text) {
 					t.Errorf("%s%s: %s = %q is not under the placeholder home",
