@@ -10,15 +10,26 @@ permissions:
   contents: read
 
 jobs:
+  # Both supported platforms are tested. Testing only Linux while the README claims
+  # macOS support would make the badge green by not looking.
   test:
-    name: make check
-    runs-on: ubuntu-latest
+    name: make check (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
         with:
-          go-version: "1.22"
-          check-latest: true
+          # "stable" rather than the go.mod floor of 1.22. Go 1.22 links race-detector
+          # binaries that current macOS runners reject at load time with
+          # "dyld: missing LC_UUID load command", which aborts every package before a
+          # single test runs. go.mod still declares 1.22 as the language floor; this
+          # only chooses the toolchain CI builds with.
+          go-version: stable
+      - run: go version
       - run: make check
 
   build:
